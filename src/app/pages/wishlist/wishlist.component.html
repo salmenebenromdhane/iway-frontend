@@ -1,0 +1,152 @@
+<div *ngIf="user!=null">
+
+    <mat-chip-list *ngIf="user.etatDemande==='En cours'">
+        <mat-chip color="warn" selected="true">Votre demande est en cours de traitement.</mat-chip>
+    </mat-chip-list>
+    <mat-chip-list *ngIf="user.etatDemande==='non'">
+        <mat-chip color="warn" selected="true">Votre demande d'autorisation de circulation a été refusée.</mat-chip>
+    </mat-chip-list>
+    <div *ngIf="user.etatDemande==='ok'" id="printableArea">
+        <div class="printable" id="print">
+            <h1>AUTORISATION DE CIRCULATION</h1>
+            <mat-horizontal-stepper   #horizontalStepper linear="true" class="mat-elevation-z2" fxShow="false" fxShow.gt-sm>
+             
+                <mat-step  >    
+                  <div fxLayout="row wrap">
+                    <div fxFlex="100" class="p-1">
+                      <h3 class="text-muted">Société</h3>
+                      <div class="divider"></div>
+                      <div class="mat-table review-order-table">
+                        <div class="mat-header-row">
+                          <div class="mat-header-cell">Raison sociale   :{{user.rasionSociale}}</div>
+                          <div class="mat-header-cell">RNE    : {{user.rne}} </div>
+                          <div class="mat-header-cell">Adresse    : {{user.adresse}}</div>      
+                          <div class="mat-header-cell">Governorat    : {{user.governorat}}</div>
+                          <div class="mat-header-cell">Ministère de tutuelle   : {{user.ministereDeTutuelle}}</div>
+                          <div class="mat-header-cell">Secteur d'activité   : {{user.secteurActivite}}</div>
+                        </div>
+                       
+                      </div>
+                    </div> 
+                  </div>
+                  <div fxLayout="row wrap">
+                    <div fxFlex="100" class="p-1">
+                      <h3 class="text-muted mt-2">Responsable</h3>
+                      <div class="divider"></div>
+                    </div>
+                    <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                      <p class="text-muted">Nom Prénom:</p>
+                      <p>{{responsable.nom}} {{responsable.prenom}}</p>
+                    </div>
+                    <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                      <p class="text-muted">CIN:</p>
+                      <p>{{responsable.cin}}</p>
+                    </div>
+                    <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                      <p class="text-muted">Tél:</p>
+                      <p>{{responsable.tel}}</p>
+                    </div>
+                    <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                      <p class="text-muted">Adresse:</p>
+                      <p>{{responsable.adresse}}</p>
+                    </div>
+                    
+                 
+                    
+                  </div>
+      
+                  <div fxFlex="100" class="p-1">
+                      <h3 class="text-muted mt-2">Effectif mobilisé</h3>
+                      <div class="divider"></div>
+                    </div>
+                  <ng-container *ngFor="let i of effectif">
+                      <div  fxFlex="100" fxFlex.gt-sm="50" class="p-1">
+                          <span class="text-muted">Nom Prénom:&nbsp;&nbsp;</span> <span >    {{i.nom}} {{i.prenom}}:&nbsp;&nbsp;</span>
+                       
+                          <span class="text-muted">CIN:&nbsp;&nbsp;</span><span >   {{i.cin}}</span>
+                          
+                        </div>
+                       
+                   </ng-container>
+                  
+                  <div fxLayout="row" fxLayoutAlign="center center" class="p-1"> 
+                     <h2><span class="text-muted mr-1">Ministère de l'intérieure</span></h2>    
+                  </div>
+              
+                </mat-step>
+               
+              </mat-horizontal-stepper>
+              
+              <mat-vertical-stepper #verticalStepper linear="true" class="mat-elevation-z2" fxHide="false" fxHide.gt-sm>
+                 
+                  <mat-step  >    
+                      <div fxLayout="row wrap">
+                        <div fxFlex="100" class="p-1">
+                          <h3 class="text-muted">Société</h3>
+                          <div class="divider"></div>
+                          <div class="mat-table review-order-table">
+                            <div class="mat-header-row">
+                              <div class="mat-header-cell">Raison sociale   : {{user.rasionSociale}}</div>
+                              <div class="mat-header-cell">RNE    : {{user.rne}} </div>
+                              <div class="mat-header-cell">Adresse    : {{user.adresse}}</div>      
+                              <div class="mat-header-cell">Governorat    : {{user.governorat}}</div>
+                              <div class="mat-header-cell">Ministère de tutuelle   : {{user.ministereDeTutuelle}}</div>
+                              <div class="mat-header-cell">Secteur d'activité   : {{user.secteurActivite}}</div>
+                            </div>
+                           
+                          </div>
+                        </div> 
+                      </div>
+                      <div fxLayout="row wrap">
+                        <div fxFlex="100" class="p-1">
+                          <h3 class="text-muted mt-2">Responsable</h3>
+                          <div class="divider"></div>
+                        </div>
+                        <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                          <p class="text-muted">Nom Prénom:</p>
+                          <p>{{responsable.nom}} {{responsable.prenom}}</p>
+                        </div>
+                        <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                          <p class="text-muted">CIN:</p>
+                          <p>{{responsable.cin}}</p>
+                        </div>
+                        <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                          <p class="text-muted">Tél:</p>
+                          <p>{{responsable.tel}}</p>
+                        </div>
+                        <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                          <p class="text-muted">Adresse:</p>
+                          <p>{{responsable.adresse}}</p>
+                        </div>
+                        
+                     
+                        
+                      </div>
+          
+                      <div fxFlex="100" class="p-1">
+                          <h3 class="text-muted mt-2">Effectif mobilisé</h3>
+                          <div class="divider"></div>
+                        </div>
+                      <ng-container *ngFor="let i of effectif">
+                          <div  fxFlex="100" fxFlex.gt-sm="50" class="p-1">
+                              <span class="text-muted">Nom Prénom:&nbsp;&nbsp;</span> <span >    {{i.nom}} {{i.prenom}}:&nbsp;&nbsp;</span>
+                           
+                              <span class="text-muted">CIN:&nbsp;&nbsp;</span><span >   {{i.cin}}</span>
+                              
+                            </div>
+                           
+                       </ng-container>
+                      
+                      <div fxLayout="row" fxLayoutAlign="center center" class="p-1"> 
+                         <h2><span class="text-muted mr-1">Ministère de l'intérieure</span></h2>    
+                      </div>
+                  
+                    </mat-step>
+              </mat-vertical-stepper>
+              
+    </div>
+    <button mat-fab class="btn" (click)="Imprimer()" color="primary" ><mat-icon>print</mat-icon>
+    </button>
+</div>
+
+

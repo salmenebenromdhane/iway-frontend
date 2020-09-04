@@ -1,0 +1,18 @@
+// p::before { 
+//     font-family: "Material Icons"; 
+//     content: "\E87C";
+//     font-size: 20px;
+// }
+
+table {
+    width: 100%;
+  }
+  .btn{
+    display: block;
+    margin: auto;
+  }
+  h1{
+    text-align: center
+  }
+  :host ::ng-deep .mat-horizontal-stepper-header-container {   display: none !important;  }
+:host ::ng-deep .mat-vertical-stepper-header-container {   display: none !important;  }

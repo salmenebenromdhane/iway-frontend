@@ -1,0 +1,376 @@
+
+
+<mat-horizontal-stepper #horizontalStepper linear="true" class="mat-elevation-z2" fxShow="false" fxShow.gt-sm>
+    <mat-step [stepControl]="billingForm" label="Informations sur la societe معلومات تخص الشركة">
+      <form [formGroup]="billingForm">     
+        <div fxLayout="row wrap">
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>MATRICULE FISCALE/رقم التسجيل الضريبي</mat-label>
+                <input matInput value={{user.matriculeFiscale}} readonly  >
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>RAISON SOCIALE / اسم المؤسسة</mat-label>
+                <input matInput value={{user.rasionSociale}} readonly  >
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>ADRESSE / العنوان
+                </mat-label>
+                <input matInput value={{user.adresse}}  readonly>
+             </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>GOUVERNORAT / الولاية</mat-label>
+
+                  <input matInput value={{user.governorat}} readonly >
+   
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>MINISTERE DE TUTUELLE /  وزارة الاشراف
+                </mat-label>
+              <input matInput value={{user.ministereDeTutuelle}} readonly  >
+                
+                 </mat-form-field> 
+        
+          </div>
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>SECTEUR ACTIVITÉ / مجال النشاط
+                </mat-label>
+                <input matInput value={{user.secteurActivite}} readonly >
+                
+               
+         
+                </mat-form-field> 
+          </div>
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>EFFECTIF TOTAL / العدد الجملي للعملة
+                </mat-label>
+                <input matInput value={{user.effectifTotal}} readonly type="text" >
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>EFFECTIF MOBILISÉ / عدد العملة المرخص لهم للتنقل للعمل
+                </mat-label>
+                <input matInput placeholder="EFFECTIF MOBILISÉ / عدد العملة المرخص لهم للتنقل للعمل" type="number" formControlName="effectifmobilise" required>
+                <mat-error *ngIf="billingForm.controls.effectifmobilise.errors?.required">Ce champ est obligatoire</mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>EMAIL/البريد الإلكتروني</mat-label>
+                <input matInput value={{user.email}} readonly >
+            </mat-form-field>
+          </div>
+          
+        
+         
+          
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1"> 
+          <button mat-mini-fab matStepperNext color="primary"  matTooltip="Next" matTooltipPosition="after"><mat-icon>navigate_next</mat-icon></button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="deliveryForm" label="Premier responsable المسؤول الأول">
+      <form [formGroup]="deliveryForm" class="p-2">
+          <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>NOM/اللقب </mat-label>
+                            <input matInput placeholder="NOM/اللقب " formControlName="nom" required>
+                            <mat-error *ngIf="deliveryForm.controls.nom.errors?.required">Ce champ est obligatoire</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>PRENOM/ الإسم </mat-label>
+                                <input matInput placeholder="PRENOM/الإسم " formControlName="prenom" required>
+                                <mat-error *ngIf="deliveryForm.controls.prenom.errors?.required">Ce champ est obligatoire</mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>ADRESSE/العنوان</mat-label>
+                                    <input matInput placeholder="ADRESSE/العنوان" formControlName="adresse" required>
+                                    <mat-error *ngIf="deliveryForm.controls.adresse.errors?.required">Ce champ est obligatoire</mat-error>
+                                </mat-form-field>
+                              </div>
+                              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>NUMERO CIN/ رقم ب.ت.و </mat-label>
+                                        <input matInput placeholder="NUMERO CIN/ رقم ب.ت.و "  type="number" formControlName="cin" required>
+                                        <mat-error *ngIf="deliveryForm.controls.cin.errors?.required">Ce champ est obligatoire</mat-error>
+                                    </mat-form-field>
+                                  </div>
+                                  <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <mat-label>NUM TEL/رقم الهاتف</mat-label>
+                                            <input matInput placeholder="NUM TEL/رقم الهاتف"   type="number" formControlName="tel" required>
+                                            <mat-error *ngIf="deliveryForm.controls.tel.errors?.required">Ce champ est obligatoire</mat-error>
+                                        </mat-form-field>
+                                      </div>
+                     
+          </div>
+       
+        <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1"> 
+          <button mat-mini-fab matStepperPrevious color="primary" matTooltip="Back" matTooltipPosition="before" class="mr-1"><mat-icon>navigate_before</mat-icon></button>
+          <button mat-mini-fab matStepperNext color="primary" matTooltip="Next" matTooltipPosition="after"><mat-icon>navigate_next</mat-icon></button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="paymentForm" label="effectifs mobilises العملة المسموح لهم بالتنقل">
+      <form [formGroup]="paymentForm">
+        <div fxLayout="row wrap">
+          <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start" class="p-1">
+          
+            <button mat-button (click)="ajouterEmploye()">
+                    <mat-icon>add</mat-icon>
+                    Ajouter employé
+                </button>
+                <button mat-button (click)="RetirerEmploye()">
+                        <mat-icon>clear</mat-icon>
+                        Retirer employé
+                    </button>
+       
+          </div>        
+         <div *ngFor="let nb of nbEmploye;let index=index">
+                <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                        <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>NOM/ اللقب    </mat-label>
+                                <input matInput placeholder="NOM/ اللقب" class="nom" id="nom{{index}}"  formControlName="nom" required>
+                                <mat-error *ngIf="paymentForm.controls.nom.errors?.required">Ce champ est obligatoire</mat-error>
+                            </mat-form-field>
+                  </div>
+                  <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                        <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>PRENOM/الإسم </mat-label>
+                                <input matInput placeholder="PRENOM/الإسم" class="prenom" id="prenom{{index}}" formControlName="prenom" required>
+                                <mat-error *ngIf="paymentForm.controls.prenom.errors?.required">Ce champ est obligatoire</mat-error>
+                            </mat-form-field>
+                  </div>
+                  <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                        <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>CIN/رقم ب.ت.و </mat-label>
+                                <input matInput placeholder="CIN/رقم ب.ت.و" class="cin" type="number" id="cin{{index}}" formControlName="cin" required>
+                                <mat-error *ngIf="paymentForm.controls.cin.errors?.required">Ce champ est obligatoire</mat-error>
+                            </mat-form-field>
+                  </div>
+         </div>
+         
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1"> 
+          <button mat-mini-fab matStepperPrevious color="primary" matTooltip="Back" matTooltipPosition="before" class="mr-1"><mat-icon>navigate_before</mat-icon></button>
+          <button mat-mini-fab matStepperNext color="primary" matTooltip="Next" matTooltipPosition="after"><mat-icon>navigate_next</mat-icon></button>       
+        </div>
+      </form>
+    </mat-step>
+    
+    <mat-step label="Confirmation تأكيد">
+        <div fxLayout="column" fxLayoutAlign="center center" class="p-2 text-center"> 
+          <button mat-fab color="primary" (click)="EnvoyerDemande('H')"><mat-icon>check</mat-icon></button>
+          <h2 class="py-2">Envoyer la demande?</h2>
+          <p class="text-muted">La demande sera traitée par la ministère de l'intérieure et vous serez notifié le plutôt possible.</p>
+        </div>
+   
+         
+      </mat-step>
+  </mat-horizontal-stepper>
+  
+  <mat-vertical-stepper #verticalStepper linear="true" class="mat-elevation-z2" fxHide="false" fxHide.gt-sm>
+      <mat-step [stepControl]="billingForm" label="Informations sur la societe معلومات تخص الشركة">
+          <form [formGroup]="billingForm">     
+            <div fxLayout="row wrap">
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>MATRICULE FISCALE/رقم التسجيل الضريبي</mat-label>
+                    <input matInput value={{user.matriculeFiscale}} readonly  >
+                </mat-form-field>
+              </div>
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>RAISON SOCIALE / اسم المؤسسة</mat-label>
+                    <input matInput value={{user.rasionSociale}} readonly  >
+                </mat-form-field>
+              </div>
+    
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>ADRESSE / العنوان
+                    </mat-label>
+                    <input matInput value={{user.adresse}}  readonly>
+                 </mat-form-field>
+              </div>
+              <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>GOUVERNORAT / الولاية</mat-label>
+    
+                      <input matInput value={{user.governorat}} readonly >
+       
+                </mat-form-field>
+              </div>
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>MINISTERE DE TUTUELLE /  وزارة الاشراف
+                    </mat-label>
+                  <input matInput value={{user.ministereDeTutuelle}} readonly  >
+                    
+                     </mat-form-field> 
+            
+              </div>
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>SECTEUR ACTIVITÉ / مجال النشاط
+                    </mat-label>
+                    <input matInput value={{user.secteurActivite}} readonly >
+                    
+                   
+             
+                    </mat-form-field> 
+              </div>
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>EFFECTIF TOTAL / العدد الجملي للعملة
+                    </mat-label>
+                    <input matInput value={{user.effectifTotal}} readonly type="text" >
+                </mat-form-field>
+              </div>
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>EFFECTIF MOBILISÉ / عدد العملة المرخص لهم للتنقل للعمل
+                    </mat-label>
+                    <input matInput placeholder="EFFECTIF MOBILISÉ / عدد العملة المرخص لهم للتنقل للعمل" type="number" formControlName="effectifmobilise" required>
+                    <mat-error *ngIf="billingForm.controls.effectifmobilise.errors?.required">Ce champ est obligatoire</mat-error>
+                </mat-form-field>
+              </div>
+              
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>EMAIL/البريد الإلكتروني</mat-label>
+                    <input matInput value={{user.email}} readonly >
+                </mat-form-field>
+              </div>
+              
+            
+             
+              
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1"> 
+              <button mat-mini-fab matStepperNext color="primary"  matTooltip="Next" matTooltipPosition="after"><mat-icon>navigate_next</mat-icon></button>
+            </div>
+          </form>
+        </mat-step>
+    <mat-step [stepControl]="deliveryForm" label="Premier responsable المسؤول الأول">
+      <form [formGroup]="deliveryForm" class="p-2">
+            <div fxLayout="row wrap">
+                    <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>NOM/الإسم </mat-label>
+                                <input matInput placeholder="NOM/الإسم " formControlName="nom" required>
+                                <mat-error *ngIf="deliveryForm.controls.nom.errors?.required">Ce champ est obligatoire</mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>PRENOM/اللقب </mat-label>
+                                    <input matInput placeholder="PRENOM/اللقب " formControlName="prenom" required>
+                                    <mat-error *ngIf="deliveryForm.controls.prenom.errors?.required">Ce champ est obligatoire</mat-error>
+                                </mat-form-field>
+                              </div>
+                              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>ADRESSE/العنوان</mat-label>
+                                        <input matInput placeholder="ADRESSE/العنوان" formControlName="adresse" required>
+                                        <mat-error *ngIf="deliveryForm.controls.adresse.errors?.required">Ce champ est obligatoire</mat-error>
+                                    </mat-form-field>
+                                  </div>
+                                  <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <mat-label>NUMERO CIN/ رقم ب.ت.و </mat-label>
+                                            <input matInput placeholder="NUMERO CIN/ رقم ب.ت.و "  type="number" formControlName="cin" required>
+                                            <mat-error *ngIf="deliveryForm.controls.cin.errors?.required">Ce champ est obligatoire</mat-error>
+                                        </mat-form-field>
+                                      </div>
+                                      <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>NUM TEL/رقم الهاتف</mat-label>
+                                                <input matInput placeholder="NUM TEL/رقم الهاتف"  type="number" formControlName="tel" required>
+                                                <mat-error *ngIf="deliveryForm.controls.tel.errors?.required">Ce champ est obligatoire</mat-error>
+                                            </mat-form-field>
+                                          </div>
+                         
+              </div>
+        <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1"> 
+          <button mat-mini-fab matStepperPrevious color="primary" matTooltip="Back" matTooltipPosition="before" class="mr-1"><mat-icon>expand_less</mat-icon></button>
+          <button mat-mini-fab matStepperNext color="primary" matTooltip="Next" matTooltipPosition="after"><mat-icon>expand_more</mat-icon></button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="paymentForm" label="effectifs mobilises العملة المسموح لهم بالتنقل">
+        <form [formGroup]="paymentForm">
+          <div fxLayout="row wrap">
+            <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start" class="p-1">
+            
+              <button mat-button (click)="ajouterEmploye()">
+                      <mat-icon>add</mat-icon>
+                      Ajouter employé
+                  </button>
+                  <button mat-button (click)="RetirerEmploye()">
+                          <mat-icon>clear</mat-icon>
+                          Retirer employé
+                      </button>
+         
+            </div>        
+           <div *ngFor="let nb of nbEmploye;let index=index">
+                  <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                          <mat-form-field appearance="outline" class="w-100">
+                                  <mat-label>NOM/ اللقب    </mat-label>
+                                  <input matInput placeholder="NOM/ اللقب" class="nomv"  id="nom{{index}}"  formControlName="nom" required>
+                                  <mat-error *ngIf="paymentForm.controls.nom.errors?.required">Ce champ est obligatoire</mat-error>
+                              </mat-form-field>
+                    </div>
+                    <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                          <mat-form-field appearance="outline" class="w-100">
+                                  <mat-label>PRENOM/الإسم </mat-label>
+                                  <input matInput placeholder="PRENOM/الإسم" class="prenomv" id="prenom{{index}}" formControlName="prenom" required>
+                                  <mat-error *ngIf="paymentForm.controls.prenom.errors?.required">Ce champ est obligatoire</mat-error>
+                              </mat-form-field>
+                    </div>
+                    <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                          <mat-form-field appearance="outline" class="w-100">
+                                  <mat-label>CIN/رقم ب.ت.و </mat-label>
+                                  <input matInput placeholder="CIN/رقم ب.ت.و" class="cinv"  type="number" id="cin{{index}}" formControlName="cin" required>
+                                  <mat-error *ngIf="paymentForm.controls.cin.errors?.required">Ce champ est obligatoire</mat-error>
+                              </mat-form-field>
+                    </div>
+           </div>
+           
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1"> 
+            <button mat-mini-fab matStepperPrevious color="primary" matTooltip="Back" matTooltipPosition="before" class="mr-1"><mat-icon>navigate_before</mat-icon></button>
+            <button mat-mini-fab matStepperNext color="primary" matTooltip="Next" matTooltipPosition="after"><mat-icon>navigate_next</mat-icon></button>       
+          </div>
+        </form>
+      </mat-step>
+      
+      <mat-step label="Confirmation تأكيد">
+        <div fxLayout="column" fxLayoutAlign="center center" class="p-2 text-center"> 
+          <button mat-fab color="primary" (click)="EnvoyerDemande('V')"><mat-icon>check</mat-icon></button>
+          <h2 class="py-2">Envoyer la demande?</h2>
+          <p class="text-muted">La demande sera traitée par la ministère de l'intérieure et vous serez notifié le plutôt possible.</p>
+        </div>
+   
+         
+      </mat-step>
+  </mat-vertical-stepper>

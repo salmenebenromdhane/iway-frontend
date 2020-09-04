@@ -1,0 +1,49 @@
+<div class="top-menu">    
+
+ 
+    <a [routerLink]="['/sign-in']" mat-button *ngIf="user==null && admin==null">
+        <mat-icon class="mat-icon-sm account-icon">person</mat-icon> <span fxShow="false" fxShow.gt-sm>Login</span> 
+    </a>
+    <a mat-button [matMenuTriggerFor]="accountMenu" #accountMenuTrigger="matMenuTrigger" *ngIf="user!=null || admin!=null">
+        <mat-icon class="mat-icon-sm account-icon">person</mat-icon> <span fxShow="false" fxShow.gt-sm>Account</span> <mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+    </a>
+ 
+    <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account">
+        <span (mouseleave)="accountMenuTrigger.closeMenu()">
+          
+            <div class="divider"></div>
+            
+            <a mat-menu-item routerLink="/demande" *ngIf="user!=null"> 
+                <mat-icon class="mat-icon-sm">note</mat-icon>
+                <span>Passer demande</span> 
+            </a>
+            
+           
+            <a mat-menu-item routerLink="/maDemande" *ngIf="user!=null"> 
+                <mat-icon class="mat-icon-sm">remove_red_eye</mat-icon>
+                <span>Votre Demande</span> 
+            </a>
+            <a mat-menu-item routerLink="/contact" *ngIf="admin!=null"> 
+                <mat-icon class="mat-icon-sm">note</mat-icon>
+                <span>Demandes non traitées</span> 
+            </a>
+            
+           
+            <a mat-menu-item routerLink="/TousDemandes" *ngIf="admin!=null"> 
+                <mat-icon class="mat-icon-sm">remove_red_eye</mat-icon>
+                <span>Toutes les demandes</span> 
+            </a>
+            <a mat-menu-item routerLink="#"> 
+                <mat-icon class="mat-icon-sm">help</mat-icon>
+                <span>Help</span> 
+            </a>
+            <div class="divider"></div>
+            <a mat-menu-item (click)="logOut()"> 
+                <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
+                <span>Sign Out</span> 
+            </a>
+        </span>
+    </mat-menu> 
+     
+
+</div>  

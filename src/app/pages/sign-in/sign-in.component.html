@@ -1,0 +1,105 @@
+<mat-card>
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm="50" class="p-2">
+            <h2 class="text-muted text-center">Se connecter</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit(loginForm.value)">
+                <mat-form-field appearance="outline" class="w-100 mt-2">
+                    <mat-label>EMAIL/البريد الإلكتروني</mat-label>
+                    <input matInput placeholder="EMAIL/البريد الإلكتروني" formControlName="email" required>
+                    <mat-error *ngIf="loginForm.controls.email.errors?.required">Ce champ est obligatoire</mat-error>
+                    <mat-error *ngIf="loginForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-100 mt-1">
+                    <mat-label>IDENTIFIANT UNIQUE (RNE) / المعرف الوحيد للمؤسسة</mat-label>
+                    <input matInput placeholder="IDENTIFIANT UNIQUE (RNE) / المعرف الوحيد للمؤسسة" formControlName="rne" required>
+                    <mat-error *ngIf="loginForm.controls.rne.errors?.required">Ce champ est obligatoire</mat-error>
+                   
+                </mat-form-field> 
+                <mat-form-field appearance="outline" class="w-100 mt-1">
+                        <mat-label>SOCIETE/ADMINISTRATEUR شركة/إداري</mat-label>
+                        <mat-select placeholder="SOCIETE/ADMINISTRATEUR شركة/إداري" formControlName="role" required>
+                            <mat-option *ngFor="let role of roles" [value]="role">
+                            {{role.name}}
+                            </mat-option>
+                          </mat-select>
+                        <mat-error *ngIf="loginForm.controls.role.errors?.required">Ce champ est obligatoire</mat-error>
+                       
+                    </mat-form-field> 
+                <div class="text-center mt-2">
+                    <button mat-fab color="primary" class="mat-elevation-z6" >
+                        <mat-icon>exit_to_app</mat-icon>
+                    </button>
+                </div> 
+           
+            </form>
+
+        </div>
+        <div fxFlex="100" fxFlex.gt-sm="50" class="p-2" ngClass.sm="mt-2" ngClass.xs="mt-2">
+            <h2 class="text-muted text-center">Pas de compte? Inscrivez-vous!</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit(registerForm.value)">
+                <mat-form-field  appearance="outline" class="w-100 mt-2">
+                    <mat-label>IDENTIFIANT UNIQUE (RNE) / المعرف الوحيد للمؤسسة</mat-label>
+                    <input matInput placeholder="IDENTIFIANT UNIQUE (RNE) / المعرف الوحيد للمؤسسة" formControlName="rne" required>
+                    <mat-error *ngIf="registerForm.controls.rne.errors?.required">Ce champ de obligatoire</mat-error>
+          </mat-form-field>
+                <mat-form-field  appearance="outline" class="w-100 mt-2">
+                        <mat-label>MATRICULE FISCALE/رقم التسجيل الضريبي</mat-label>
+                        <input matInput placeholder="MATRICULE FISCALE/رقم التسجيل الضريبي" formControlName="matriculeFiscale" required>
+                        <mat-error *ngIf="registerForm.controls.matriculeFiscale.errors?.required">Ce champ est obligatoire</mat-error>
+                    </mat-form-field>
+                    <mat-form-field  appearance="outline" class="w-100 mt-2">
+                            <mat-label>RAISON SOCIALE / اسم المؤسسة</mat-label>
+                            <input matInput placeholder="RAISON SOCIALE / اسم المؤسسة" formControlName="raisonSociale" required>
+                            <mat-error *ngIf="registerForm.controls.raisonSociale.errors?.required">Ce champ est obligatoire</mat-error>
+                        </mat-form-field>
+                        <mat-form-field  appearance="outline" class="w-100 mt-2">
+                                <mat-label>ADRESSE / العنوان</mat-label>
+                                <input matInput placeholder="ADRESSE / العنوان" formControlName="adresse" required>
+                                <mat-error *ngIf="registerForm.controls.adresse.errors?.required">Ce champ est obligatoire</mat-error>
+                            </mat-form-field>
+                            <mat-form-field  appearance="outline" class="w-100 mt-2">
+                                    <mat-label>GOUVERNORAT / الولاية</mat-label>
+                                    <mat-select placeholder="Country" formControlName="governorat" required>
+                                            <mat-option *ngFor="let country of countries" [value]="country">
+                                                {{country.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                    <mat-error *ngIf="registerForm.controls.governorat.errors?.required">Ce champ est obligatoire</mat-error>
+                                </mat-form-field>
+                                <mat-form-field  appearance="outline" class="w-100 mt-2">
+                                        <mat-label>MINISTERE DE TUTUELLE /  وزارة الاشراف</mat-label>
+                                        <mat-select placeholder="MINISTERE DE TUTUELLE /  وزارة الاشراف" formControlName="ministere" required>
+                                            <mat-option *ngFor="let ministere of ministeres" [value]="ministere">
+                                                {{ministere.name}}
+                                            </mat-option>
+                                          </mat-select><mat-error *ngIf="registerForm.controls.ministere.errors?.required">Ce champ est obligatoire</mat-error>
+                                   </mat-form-field>
+                                    <mat-form-field  appearance="outline" class="w-100 mt-2">
+                                            <mat-label>SECTEUR ACTIVITÉ / مجال النشاط</mat-label>
+                                            <mat-select placeholder="SECTEUR ACTIVITÉ / مجال النشاط" formControlName="secteur" required>
+                                                <mat-option *ngFor="let secteur of secteursActivites" [value]="secteur">
+                                                    {{secteur.name}}
+                                                </mat-option>
+                                              </mat-select>
+                                              <mat-error *ngIf="registerForm.controls.secteur.errors?.required">Ce champ est obligatoire</mat-error>
+                                         </mat-form-field>
+                                        <mat-form-field  appearance="outline" class="w-100 mt-2">
+                                                <mat-label>EFFECTIF TOTAL / العدد الجملي للعملة</mat-label>
+                                                <input type="number" matInput placeholder="EFFECTIF TOTAL / العدد الجملي للعملة" formControlName="nbTotal" required>
+                                                <mat-error *ngIf="registerForm.controls.nbTotal.errors?.required">Ce champ est obligatoire</mat-error>
+                                           </mat-form-field>
+                <mat-form-field  appearance="outline" class="w-100 mt-1">
+                    <mat-label>EMAIL/البريد الإلكتروني</mat-label>
+                    <input matInput placeholder="EMAIL/البريد الإلكتروني" formControlName="email" required>
+                    <mat-error *ngIf="registerForm.controls.email.errors?.required">Ce champ est obligatoire</mat-error>
+                </mat-form-field>
+              
+                <div class="text-center mt-2">
+                    <button mat-fab color="primary" class="mat-elevation-z6" >
+                        <mat-icon>person_add</mat-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div> 
+</mat-card>

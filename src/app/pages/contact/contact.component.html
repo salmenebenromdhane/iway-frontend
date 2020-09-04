@@ -1,0 +1,181 @@
+
+<div *ngIf="nbDemandes==0"><u><h1>Aucune demande en attente</h1></u><br></div>
+<div *ngIf="nbDemandes!=0">
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> RNE </th>
+      <td mat-cell *matCellDef="let element"> {{element.rne}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Raison Sociale </th>
+      <td mat-cell *matCellDef="let element"> {{element.rasionSociale}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Governorat </th>
+      <td mat-cell *matCellDef="let element"> {{element.governorat}}</td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Détails </th>
+      <td mat-cell *matCellDef="let element"><button mat-button (click)="DetailsDemande(element)"> <mat-icon class="mat-icon-sm">remove_red_eye</mat-icon></button>  </td>
+    </ng-container>
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <br>
+  <div *ngIf="singleDemand==false">
+      <mat-horizontal-stepper  #horizontalStepper linear="true" class="mat-elevation-z2" fxShow="false" fxShow.gt-sm>
+        
+          <mat-step  >    
+            <div fxLayout="row wrap">
+              <div fxFlex="100" class="p-1">
+                <h3 class="text-muted">Société</h3>
+                <div class="divider"></div>
+                <div class="mat-table review-order-table">
+                  <div class="mat-header-row">
+                    <div class="mat-header-cell">Raison sociale   : {{demande.rasionSociale}}</div>
+                    <div class="mat-header-cell">RNE    : {{demande.rne}} </div>
+                    <div class="mat-header-cell">Adresse    : {{demande.adresse}}</div>      
+                    <div class="mat-header-cell">Governorat    : {{demande.governorat}}</div>
+                    <div class="mat-header-cell">Ministère de tutuelle   : {{demande.ministereDeTutuelle}}</div>
+                    <div class="mat-header-cell">Secteur d'activité   : {{demande.secteurActivite}}</div>
+                  </div>
+                 
+                </div>
+              </div> 
+            </div>
+            <div fxLayout="row wrap">
+              <div fxFlex="100" class="p-1">
+                <h3 class="text-muted mt-2">Responsable</h3>
+                <div class="divider"></div>
+              </div>
+              <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                <p class="text-muted">Nom Prénom:</p>
+                <p>{{responsable.nom}} {{responsable.prenom}}</p>
+              </div>
+              <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                <p class="text-muted">CIN:</p>
+                <p>{{responsable.cin}}</p>
+              </div>
+              <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                <p class="text-muted">Tél:</p>
+                <p>{{responsable.tel}}</p>
+              </div>
+              <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                <p class="text-muted">Adresse:</p>
+                <p>{{responsable.adresse}}</p>
+              </div>
+              
+           
+              
+            </div>
+
+            <div fxFlex="100" class="p-1">
+                <h3 class="text-muted mt-2">Effectif mobilisé</h3>
+                <div class="divider"></div>
+              </div>
+            <ng-container *ngFor="let i of effectif">
+                <div  fxFlex="100" fxFlex.gt-sm="50" class="p-1">
+                    <span class="text-muted">Nom Prénom:&nbsp;&nbsp;</span> <span >    {{i.nom}} {{i.prenom}}:&nbsp;&nbsp;</span>
+                 
+                    <span class="text-muted">CIN:&nbsp;&nbsp;</span><span >   {{i.cin}}</span>
+                    
+                  </div>
+                 
+             </ng-container>
+            
+            <div fxLayout="row" fxLayoutAlign="center center" class="p-1"> 
+               <h2><span class="text-muted mr-1">Ministère de l'intérieure</span></h2>    
+            </div>
+        
+          </mat-step>
+         
+        </mat-horizontal-stepper>
+        
+        <mat-vertical-stepper #verticalStepper linear="true" class="mat-elevation-z2" fxHide="false" fxHide.gt-sm>
+           
+            <mat-step  >    
+                <div fxLayout="row wrap">
+                  <div fxFlex="100" class="p-1">
+                    <h3 class="text-muted">Société</h3>
+                    <div class="divider"></div>
+                    <div class="mat-table review-order-table">
+                      <div class="mat-header-row">
+                        <div class="mat-header-cell">Raison sociale   : {{demande.rasionSociale}}</div>
+                        <div class="mat-header-cell">RNE    : {{demande.rne}} </div>
+                        <div class="mat-header-cell">Adresse    : {{demande.adresse}}</div>      
+                        <div class="mat-header-cell">Governorat    : {{demande.governorat}}</div>
+                        <div class="mat-header-cell">Ministère de tutuelle   : {{demande.ministereDeTutuelle}}</div>
+                        <div class="mat-header-cell">Secteur d'activité   : {{demande.secteurActivite}}</div>
+                      </div>
+                     
+                    </div>
+                  </div> 
+                </div>
+                <div fxLayout="row wrap">
+                  <div fxFlex="100" class="p-1">
+                    <h3 class="text-muted mt-2">Responsable</h3>
+                    <div class="divider"></div>
+                  </div>
+                  <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                    <p class="text-muted">Nom Prénom:</p>
+                    <p>{{responsable.nom}} {{responsable.prenom}}</p>
+                  </div>
+                  <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                    <p class="text-muted">CIN:</p>
+                    <p>{{responsable.cin}}</p>
+                  </div>
+                  <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                    <p class="text-muted">Tél:</p>
+                    <p>{{responsable.tel}}</p>
+                  </div>
+                  <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                    <p class="text-muted">Adresse:</p>
+                    <p>{{responsable.adresse}}</p>
+                  </div>
+                  
+               
+                  
+                </div>
+    
+                <div fxFlex="100" class="p-1">
+                    <h3 class="text-muted mt-2">Effectif mobilisé</h3>
+                    <div class="divider"></div>
+                  </div>
+                <ng-container *ngFor="let i of effectif">
+                    <div  fxFlex="100" fxFlex.gt-sm="50" class="p-1">
+                        <span class="text-muted">Nom Prénom:&nbsp;&nbsp;</span> <span >    {{i.nom}} {{i.prenom}}:&nbsp;&nbsp;</span>
+                     
+                        <span class="text-muted">CIN:&nbsp;&nbsp;</span><span >   {{i.cin}}</span>
+                        
+                      </div>
+                     
+                 </ng-container>
+                
+                <div fxLayout="row" fxLayoutAlign="center center" class="p-1"> 
+                   <h2><span class="text-muted mr-1">Ministère de l'intérieure</span></h2>    
+                </div>
+            
+              </mat-step>
+        </mat-vertical-stepper>
+        
+  </div>
+  <div *ngIf="singleDemand==false">
+      <button mat-fab class="btn" (click)="repondreDemande('ok')" color="primary" matTooltip="Accepter la demande"><mat-icon>check</mat-icon></button>
+      <button mat-fab class="btn" color="primary" (click)="repondreDemande('non')"  matTooltip="Refuser la demande"><mat-icon>cancel</mat-icon></button>
+  </div>
+
+</div>

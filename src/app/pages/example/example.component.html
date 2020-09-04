@@ -1,0 +1,169 @@
+<mat-horizontal-stepper  #horizontalStepper linear="true" class="mat-elevation-z2" fxShow="false" fxShow.gt-sm>
+        
+        <mat-step  >    
+          <div fxLayout="row wrap">
+            <div fxFlex="100" class="p-1">
+              <h3 class="text-muted">Shopping Cart</h3>
+              <div class="divider"></div>
+              <div class="mat-table review-order-table">
+                <div class="mat-header-row">
+                  <div class="mat-header-cell">Product</div>
+                  <div class="mat-header-cell">Name</div>
+                  <div class="mat-header-cell">Unit Price</div>      
+                  <div class="mat-header-cell">Quantity</div>
+                  <div class="mat-header-cell">Total</div>
+                </div>
+                <div *ngFor="let product of appService.Data.cartList" class="mat-row">
+                  <div class="mat-cell"><img [src]="product.images[0].small"></div>
+                  <div class="mat-cell">{{product.name}}</div>
+                  <div class="mat-cell">${{product.newPrice | number : '1.2-2'}}</div>      
+                  <div class="mat-cell text-muted"> {{product.cartCount}} </div>
+                  <div class="mat-cell">${{ (product.newPrice*product.cartCount) | number : '1.2-2'}}</div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div fxLayout="row wrap">
+            <div fxFlex="100" class="p-1">
+              <h3 class="text-muted mt-2">Billing information</h3>
+              <div class="divider"></div>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+              <p class="text-muted">Name:</p>
+              <p>{{billingForm.controls.firstName.value}} {{billingForm.controls.lastName.value}}</p>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+              <p class="text-muted">Email:</p>
+              <p>{{billingForm.controls.email.value}}</p>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+              <p class="text-muted">Phone:</p>
+              <p>{{billingForm.controls.phone.value}}</p>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+              <p class="text-muted">Country:</p>
+              <p>{{billingForm.controls.country.value['name']}}</p>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+              <p class="text-muted">City:</p>
+              <p>{{billingForm.controls.city.value}}</p>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+              <p class="text-muted">State:</p>
+              <p>{{billingForm.controls.state.value}}</p>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+              <p class="text-muted">Zip/PostalCode:</p>
+              <p>{{billingForm.controls.zip.value}}</p>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+              <p class="text-muted">Address:</p>
+              <p>{{billingForm.controls.address.value}}</p>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <div fxFlex="100" class="p-1">
+              <h3 class="text-muted mt-2">Delivery information</h3>
+              <div class="divider"></div>
+              <p class="py-1">{{deliveryForm.controls.deliveryMethod.value['name']}} <span class="text-muted">{{deliveryForm.controls.deliveryMethod.value['desc']}}</span></p>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <div fxFlex="100" class="p-1">
+              <h3 class="text-muted mt-2">Payment information</h3>
+              <div class="divider"></div>
+              <p class="py-1"><span class="text-muted mr-1">Card number:</span><span>XXX-XXX-XXX-7224</span></p>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center" class="p-1"> 
+             <h2><span class="text-muted mr-1">Total Price:</span><span>${{grandTotal | number : '1.2-2'}}</span></h2>    
+          </div>
+      
+        </mat-step>
+        
+      </mat-horizontal-stepper>
+      
+      <mat-vertical-stepper #verticalStepper linear="true" class="mat-elevation-z2" fxHide="false" fxHide.gt-sm>
+       
+            <mat-step  >    
+                    <div fxLayout="row wrap">
+                      <div fxFlex="100" class="p-1">
+                        <h3 class="text-muted">Shopping Cart</h3>
+                        <div class="divider"></div>
+                        <div class="mat-table review-order-table">
+                          <div class="mat-header-row">
+                            <div class="mat-header-cell">Product</div>
+                            <div class="mat-header-cell">Name</div>
+                            <div class="mat-header-cell">Unit Price</div>      
+                            <div class="mat-header-cell">Quantity</div>
+                            <div class="mat-header-cell">Total</div>
+                          </div>
+                          <div *ngFor="let product of appService.Data.cartList" class="mat-row">
+                            <div class="mat-cell"><img [src]="product.images[0].small"></div>
+                            <div class="mat-cell">{{product.name}}</div>
+                            <div class="mat-cell">${{product.newPrice | number : '1.2-2'}}</div>      
+                            <div class="mat-cell text-muted"> {{product.cartCount}} </div>
+                            <div class="mat-cell">${{ (product.newPrice*product.cartCount) | number : '1.2-2'}}</div>
+                          </div>
+                        </div>
+                      </div> 
+                    </div>
+                    <div fxLayout="row wrap">
+                      <div fxFlex="100" class="p-1">
+                        <h3 class="text-muted mt-2">Billing information</h3>
+                        <div class="divider"></div>
+                      </div>
+                      <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                        <p class="text-muted">Name:</p>
+                        <p>{{billingForm.controls.firstName.value}} {{billingForm.controls.lastName.value}}</p>
+                      </div>
+                      <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                        <p class="text-muted">Email:</p>
+                        <p>{{billingForm.controls.email.value}}</p>
+                      </div>
+                      <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                        <p class="text-muted">Phone:</p>
+                        <p>{{billingForm.controls.phone.value}}</p>
+                      </div>
+                      <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                        <p class="text-muted">Country:</p>
+                        <p>{{billingForm.controls.country.value['name']}}</p>
+                      </div>
+                      <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                        <p class="text-muted">City:</p>
+                        <p>{{billingForm.controls.city.value}}</p>
+                      </div>
+                      <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                        <p class="text-muted">State:</p>
+                        <p>{{billingForm.controls.state.value}}</p>
+                      </div>
+                      <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                        <p class="text-muted">Zip/PostalCode:</p>
+                        <p>{{billingForm.controls.zip.value}}</p>
+                      </div>
+                      <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="25" class="p-1">
+                        <p class="text-muted">Address:</p>
+                        <p>{{billingForm.controls.address.value}}</p>
+                      </div>
+                    </div>
+                    <div fxLayout="row">
+                      <div fxFlex="100" class="p-1">
+                        <h3 class="text-muted mt-2">Delivery information</h3>
+                        <div class="divider"></div>
+                        <p class="py-1">{{deliveryForm.controls.deliveryMethod.value['name']}} <span class="text-muted">{{deliveryForm.controls.deliveryMethod.value['desc']}}</span></p>
+                      </div>
+                    </div>
+                    <div fxLayout="row">
+                      <div fxFlex="100" class="p-1">
+                        <h3 class="text-muted mt-2">Payment information</h3>
+                        <div class="divider"></div>
+                        <p class="py-1"><span class="text-muted mr-1">Card number:</span><span>XXX-XXX-XXX-7224</span></p>
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center" class="p-1"> 
+                       <h2><span class="text-muted mr-1">Total Price:</span><span>${{grandTotal | number : '1.2-2'}}</span></h2>    
+                    </div>
+                
+                  </mat-step>
+      </mat-vertical-stepper>
+      
