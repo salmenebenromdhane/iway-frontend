@@ -30,6 +30,7 @@ export class ContactComponent implements OnInit {
   listeDemandes:any=[]
   ngOnInit() {
     this.admin=JSON.parse(localStorage.getItem('Admin'))
+    console.log(this.admin)
     if(this.admin==null){
       this.router.navigateByUrl('/')
     }

@@ -145,29 +145,29 @@
                     </button>
        
           </div>        
-         <div *ngFor="let nb of nbEmploye;let index=index">
-                <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
-                        <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>NOM/ اللقب    </mat-label>
-                                <input matInput placeholder="NOM/ اللقب" class="nom" id="nom{{index}}"  formControlName="nom" required>
-                                <mat-error *ngIf="paymentForm.controls.nom.errors?.required">Ce champ est obligatoire</mat-error>
-                            </mat-form-field>
-                  </div>
-                  <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
-                        <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>PRENOM/الإسم </mat-label>
-                                <input matInput placeholder="PRENOM/الإسم" class="prenom" id="prenom{{index}}" formControlName="prenom" required>
-                                <mat-error *ngIf="paymentForm.controls.prenom.errors?.required">Ce champ est obligatoire</mat-error>
-                            </mat-form-field>
-                  </div>
-                  <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
-                        <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>CIN/رقم ب.ت.و </mat-label>
-                                <input matInput placeholder="CIN/رقم ب.ت.و" class="cin" type="number" id="cin{{index}}" formControlName="cin" required>
-                                <mat-error *ngIf="paymentForm.controls.cin.errors?.required">Ce champ est obligatoire</mat-error>
-                            </mat-form-field>
-                  </div>
-         </div>
+          <div *ngFor="let nb of nbEmploye;let index=index">
+            <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>NOM/ اللقب    </mat-label>
+                            <input matInput placeholder="NOM/ اللقب" class="nom" id="nom{{index}}"  formControlName="nom" required>
+                            <mat-error *ngIf="paymentForm.controls.nom.errors?.required">Ce champ est obligatoire</mat-error>
+                        </mat-form-field>
+              </div>
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>PRENOM/الإسم </mat-label>
+                            <input matInput placeholder="PRENOM/الإسم" class="prenom" id="prenom{{index}}" formControlName="prenom" required>
+                            <mat-error *ngIf="paymentForm.controls.prenom.errors?.required">Ce champ est obligatoire</mat-error>
+                        </mat-form-field>
+              </div>
+              <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>CIN/رقم ب.ت.و </mat-label>
+                            <input matInput placeholder="CIN/رقم ب.ت.و" class="cin" type="number" id="cin{{index}}" formControlName="cin" required>
+                            <mat-error *ngIf="paymentForm.controls.cin.errors?.required">Ce champ est obligatoire</mat-error>
+                        </mat-form-field>
+              </div>
+     </div>
          
         </div>
         <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1"> 

@@ -9,6 +9,7 @@ import { AppService } from 'src/app/app.service';
 import { Societe } from 'src/Models/Societe';
 import { SocieteService } from 'src/Services/SocieteService';
 import { AdminService } from 'src/Services/AdminService';
+import { Administrateur } from 'src/Models/Administrateur';
 
 
 @Component({
@@ -20,12 +21,15 @@ export class SignInComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   user : Societe= new Societe();
-  roles=[]
+  roles=[];
+
+  admin:Administrateur=new Administrateur();
   countries = [];
   ministeres = [];
   secteursActivites = [];
   societe:Societe=new Societe(); 
-  objectLog:any
+  objectLog:any;
+  notfound:string
   constructor(public formBuilder: FormBuilder,private adminService:AdminService, public societeService:SocieteService, public appService: AppService, public router:Router, public snackBar: MatSnackBar,private us:UserService) { }
 
   ngOnInit() {
@@ -56,28 +60,59 @@ export class SignInComponent implements OnInit {
   }
 
   public onLoginFormSubmit(values:any):void {
-
+this.notfound="sss"
     if (this.loginForm.valid ) {
+
       if(values.role.name==='Société'){
-        this.societeService.login(values.email,values.rne).subscribe(
-          res=>{this.user=JSON.parse(JSON.stringify(res))},
-          e=>{},
-          ()=>{if(this.user===null)
+
+        this.societeService.login(values.email,values.rne,'Societe',values.email,this.societe).subscribe(
+          res=>{
+            //console.log(res)
+         if(res==="nf") {
+           
+           this.notfound=res
+          
+          }
+else{
+  var us=JSON.parse(JSON.stringify(res))
+  this.user=JSON.parse(us);
+
+}
+           },
+          e=>{console.log(e)},
+          ()=>{
+            console.log(this.notfound)
+            if(this.user.id===undefined || this.notfound==="nf")
             this.snackBar.open('Vérifiez Email/RNE!', '×', { panelClass: 'danger', verticalPosition: 'top', duration: 6000 });
           else {
             localStorage.setItem('User',JSON.stringify(this.user));
-            location.replace('/')
+          
+             location.replace('/')
           }   
           })
       }
       else if(values.role.name==='Administrateur'){
-        this.adminService.login(values.email,values.rne).subscribe(
-          res=>{this.user=JSON.parse(JSON.stringify(res))},
+        console.log(values.role.name)
+        this.societeService.login(values.email,values.rne,'Administrateur',values.email,this.societe).subscribe(
+          res=>{
+            var a=JSON.parse(JSON.stringify(res));
+            this.admin=JSON.parse(a);
+            if(res==="nf") {
+           
+              this.notfound=res
+             
+             }
+          },
           e=>{},
-          ()=>{if(this.user===null)
+          ()=>{
+            console.log()
+            if(this.admin.id===undefined || this.notfound==="nf") {
+            console.log(this.admin)
             this.snackBar.open('Vérifiez Email/Mot de passe!', '×', { panelClass: 'danger', verticalPosition: 'top', duration: 6000 });
+          
+          }
           else {
-            localStorage.setItem('Admin',JSON.stringify(this.user));
+            localStorage.setItem('Admin',JSON.stringify(this.admin));
             location.replace('/')
           }   
           })
@@ -100,11 +135,16 @@ export class SignInComponent implements OnInit {
       this.societe.rasionSociale=values.raisonSociale;
       this.societe.rne=values.rne;
       this.societe.secteurActivite=values.secteur.name;
-     this.societeService.register(this.societe).subscribe(res=>{},e=>{},()=>{
+      this.societeService.login('','','',values.email,this.societe).subscribe(res=>{},e=>{},()=>{
+        this.registerForm.reset()
+         this.snackBar.open('Inscription terminée avec succès!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 6000 });
+     
+       })
+     /*this.societeService.register(this.societe,values.email).subscribe(res=>{},e=>{},()=>{
        this.registerForm.reset()
         this.snackBar.open('Inscription terminée avec succès!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 6000 });
     
-      })
+      })*/
     }
   }
 

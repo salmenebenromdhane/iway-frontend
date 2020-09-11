@@ -11,15 +11,18 @@ import * as $ from "jquery";
 })
 export class WishlistComponent implements OnInit {
 user:any
-responsable:any;
-effectif=[];
+responsable:any={"nom":"","prenom":"","adresse":""};
+effectif:any=[];
   constructor(public appService:AppService, private employeService: EmployeService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.user=JSON.parse(localStorage.getItem('User'))
+    console.log(this.user)
     this.effectif=this.user.listeEmployes
+    console.log(this.effectif)
     this.employeService.TrouverResponsable(this.user.id).subscribe(res=>{this.responsable=JSON.parse(JSON.stringify(res))},e=>{},()=>{
-     
+     console.log("responsable")
+     console.log(this.responsable.nom)
     })
       
   }

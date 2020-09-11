@@ -12,5 +12,6 @@ export class Societe{
     listeEmployes:any[];
     nbEffectifMobilise:number;
     etatDemande:string;
+    token:String;
     
 }

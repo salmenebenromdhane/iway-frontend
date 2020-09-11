@@ -30,13 +30,16 @@ export class CheckoutComponent implements OnInit {
   listeEmployes=[];
   msg:string;
 
-  user:Societe=new Societe()
+  user:Societe=new  Societe()
   societe:Societe=new Societe()
   constructor(public appService:AppService,public snackBar: MatSnackBar,private elementRef: ElementRef,public societeService:SocieteService, public formBuilder: FormBuilder,private router :Router) { }
 
   ngOnInit() {
 
+
+    
     this.user=JSON.parse(localStorage.getItem('User'))
+    
     if(this.user==null) this.router.navigateByUrl('/')
     //console.log(this.user[0])
     if(this.user.etatDemande==='En cours'){
@@ -125,6 +128,7 @@ export class CheckoutComponent implements OnInit {
         cin:num
       };
       this.listeEmployes.push(obj);
+      
     }
    
     this.societe=this.user;
@@ -138,16 +142,21 @@ export class CheckoutComponent implements OnInit {
     var adresseResponsable=this.deliveryForm.controls.adresse.value
     var telResponsable=this.deliveryForm.controls.tel.value
     var cinResponsable=this.deliveryForm.controls.cin.value
-    this.societeService.DemanderAutorisation(adresseResponsable,
+    console.log(JSON.parse(JSON.stringify(this.societe)))
+   this.societeService.
+   DemanderAutorisation(
+     adresseResponsable,
       telResponsable,
       cinResponsable,
       nomResponsable,
       prenomResponsable,
-     this.societe).subscribe(res=>{this.msg=res.toString()},e=>{console.log(e)},()=>{
+      this.societe).subscribe(res=>{this.msg=res.toString()},e=>{console.log(e)},()=>{
       this.snackBar.open("Demande d'autorisation envoyée avec succès", '×', { panelClass: 'success', verticalPosition: 'top', duration: 6000 });
        this.user.etatDemande='En cours';
        localStorage.setItem('User',JSON.stringify(this.user));
+       this.router.navigateByUrl('/')
      })
+    
    
   }
  

@@ -10,7 +10,7 @@
                     <mat-error *ngIf="loginForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100 mt-1">
-                    <mat-label>IDENTIFIANT UNIQUE (RNE) / المعرف الوحيد للمؤسسة</mat-label>
+                    <mat-label>MOT DE PASSE</mat-label>
                     <input matInput placeholder="IDENTIFIANT UNIQUE (RNE) / المعرف الوحيد للمؤسسة" formControlName="rne" required>
                     <mat-error *ngIf="loginForm.controls.rne.errors?.required">Ce champ est obligatoire</mat-error>
                    
